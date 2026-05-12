@@ -1,0 +1,33 @@
+{
+  "name": "mca-legal-mcps",
+  "version": "1.0.0",
+  "description": "Comprehensive bundle of Turkish legal MCP servers (Literatur, Jurix, Mevzuat, Yargi, YokTez) and legal research reporting tools.",
+  "author": {
+    "name": "mca",
+    "email": "mca@example.com",
+    "url": "https://github.com/mca"
+  },
+  "homepage": "https://github.com/mca/mca-legal-mcps",
+  "repository": "https://github.com/mca/mca-legal-mcps",
+  "license": "MIT",
+  "keywords": ["turkish-law", "mcp", "legal-research", "mca", "legal-reporting"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "MCA Legal Research Bundle",
+    "shortDescription": "Turkish legal research MCP servers and professional reporting.",
+    "longDescription": "A complete suite for Turkish legal practitioners including Literatur, Jurix, Mevzuat, Yargi, and YokTez MCP servers, plus a professional legal research reporting skill.",
+    "developerName": "mca",
+    "category": "Productivity",
+    "capabilities": ["Read", "Search", "Reporting"],
+    "websiteURL": "https://github.com/mca",
+    "privacyPolicyURL": "https://github.com/mca/mca-legal-mcps/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/mca/mca-legal-mcps/blob/main/TERMS.md",
+    "defaultPrompt": [
+      "Search Turkish case law and legislation sources.",
+      "Look up YOK theses and DergiPark articles.",
+      "Generate a professional legal research report."
+    ],
+    "brandColor": "#1E293B"
+  }
+}

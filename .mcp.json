@@ -1,0 +1,49 @@
+{
+  "mcpServers": {
+    "literatur-mcp": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--project",
+        "./mcp-servers/literatur-mcp",
+        "literatur-mcp"
+      ]
+    },
+    "jurix-mcp": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--project",
+        "./mcp-servers/jurix-mcp",
+        "jurix-mcp"
+      ]
+    },
+    "mevzuat-mcp": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--project",
+        "./mcp-servers/mevzuat-mcp",
+        "mevzuat-mcp"
+      ]
+    },
+    "yargi-mcp": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--project",
+        "./mcp-servers/yargi-mcp",
+        "yargi-mcp"
+      ]
+    },
+    "yoktez-mcp": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--project",
+        "./mcp-servers/yoktez-mcp",
+        "yoktez-mcp"
+      ]
+    }
+  }
+}
