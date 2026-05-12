@@ -1,0 +1,503 @@
+{"level": "ERROR", "name": "jurixmcp.jurix_http", "message": "Login rejected", "event": "login_rejected", "detail": "email=ayngz6lns2@dollicons.com body='<!DOCTYPE html>\\n<!--[if lt IE 7]>      <html class=\"no-js lt-ie9 lt-ie8 lt-ie7\" lang=\"tr\"> <![endif]-->\\n<!--[if IE 7]>         <html class=\"no-js lt-ie9 lt-ie8\" lang=\"tr\"> <![endif]-->\\n<!--[if IE 8]>         <html class=\"no-js lt-ie9\" lang=\"tr\"> <![endif]-->\\n<!--[if gt IE 8]>      <html class=\"no-js'"}
+[02/23/26 13:49:23] Error calling tool
+                    'jurix_download_pdf'
+                    ╭─ Traceback (most recent call last)─╮
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\tools.py:30 in                 │
+                    │ jurix_download_pdf                 │
+                    │                                    │
+                    │   27 │   │   output_root = self.ac │
+                    │   28 │   │   output_root.mkdir(par │
+                    │   29 │   │   try:                  │
+                    │ ❱ 30 │   │   │   result = self.jur │
+                    │      output_root)                  │
+                    │   31 │   │   except DownloadError  │
+                    │   32 │   │   │   # Some article pa │
+                    │      looks logged in.              │
+                    │   33 │   │   │   if "Unable to ext │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:322 in           │
+                    │ download_article_pdf               │
+                    │                                    │
+                    │   319 │                            │
+                    │   320 │   def download_article_pdf │
+                    │       output_root: Path) -> Downlo │
+                    │   321 │   │   started = time.perf_ │
+                    │ ❱ 322 │   │   details = self.get_a │
+                    │   323 │   │   safe_title = "".join │
+                    │       ", "-")).strip().replace(" " │
+                    │   324 │   │   safe_author = "".joi │
+                    │       (" ", "-")).strip().replace( │
+                    │   325 │   │   folder_name = f"{saf │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:294 in           │
+                    │ get_article_details                │
+                    │                                    │
+                    │   291 │   │   │   if img_match:    │
+                    │   292 │   │   │   │   slug = img_m │
+                    │   293 │   │   if slug is None:     │
+                    │ ❱ 294 │   │   │   raise DownloadEr │
+                    │   295 │   │                        │
+                    │   296 │   │   image_pages = self._ │
+                    │   297 │   │   if image_pages:      │
+                    ╰────────────────────────────────────╯
+                    DownloadError: Unable to extract image
+                    slug from article page
+
+                    During handling of the above
+                    exception, another exception occurred:
+
+                    ╭─ Traceback (most recent call last)─╮
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\server\serv │
+                    │ er.py:982 in call_tool             │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\tools\tool. │
+                    │ py:332 in _run                     │
+                    │                                    │
+                    │      ... 8 frames hidden ...       │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\tools.py:51 in                 │
+                    │ _force_relogin_session             │
+                    │                                    │
+                    │   48 │   def _force_relogin_sessio │
+                    │   49 │   │   session = self.jurix_ │
+                    │   50 │   │   csrf = self.jurix_cli │
+                    │ ❱ 51 │   │   csrf = self.jurix_cli │
+                    │      auth.account.password, csrf)  │
+                    │   52 │   │   self.repository.save_ │
+                    │   53 │   │   │   account_id=auth.a │
+                    │   54 │   │   │   csrf_token=csrf,  │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:152 in login     │
+                    │                                    │
+                    │   149 │   │   │   │   │   "detail" │
+                    │   150 │   │   │   │   },           │
+                    │   151 │   │   │   )                │
+                    │ ❱ 152 │   │   │   raise Authentica │
+                    │   153 │   │                        │
+                    │   154 │   │   return csrf          │
+                    │   155                              │
+                    ╰────────────────────────────────────╯
+                    AuthenticationError: Login failed due
+                    to invalid credentials
+INFO:     127.0.0.1:62044 - "POST /mcp HTTP/1.1" 200 OK
+[02/23/26 13:49:36] Error calling tool
+                    'jurix_download_pdf'
+                    ╭─ Traceback (most recent call last)─╮
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\server\serv │
+                    │ er.py:982 in call_tool             │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\tools\tool. │
+                    │ py:332 in _run                     │
+                    │                                    │
+                    │      ... 8 frames hidden ...       │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:334 in           │
+                    │ download_article_pdf               │
+                    │                                    │
+                    │   331 │   │   │   content = self._ │
+                    │       details["slug"])             │
+                    │   332 │   │   │   if content is No │
+                    │   333 │   │   │   │   continue     │
+                    │ ❱ 334 │   │   │   image = Image.op │
+                    │   335 │   │   │   path = article_d │
+                    │   336 │   │   │   image.save(path, │
+                    │   337 │   │   │   image_paths.appe │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\PIL\Image.py:3579   │
+                    │ in open                            │
+                    │                                    │
+                    │   3576 │   for message in warning_ │
+                    │   3577 │   │   warnings.warn(messa │
+                    │   3578 │   msg = "cannot identify  │
+                    │ ❱ 3579 │   raise UnidentifiedImage │
+                    │   3580                             │
+                    │   3581                             │
+                    │   3582 #                           │
+                    ╰────────────────────────────────────╯
+                    UnidentifiedImageError: cannot
+                    identify image file <_io.BytesIO
+                    object at 0x00000290528E8770>
+Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Roaming\uv\python\cpython-3.11.11-windows-x86_64-none\Lib\asyncio\events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\Lenovo\AppData\Roaming\uv\python\cpython-3.11.11-windows-x86_64-none\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+ConnectionResetError: [WinError 10054] Varolan bir bağlantı uzaktaki bir ana bilgisayar tarafından zorla kapatıldı
+INFO:     127.0.0.1:62049 - "POST /mcp HTTP/1.1" 200 OK
+{"level": "ERROR", "name": "jurixmcp.jurix_http", "message": "Login rejected", "event": "login_rejected", "detail": "email=ryvc7zkdjr@dollicons.com body='<!DOCTYPE html>\\n<!--[if lt IE 7]>      <html class=\"no-js lt-ie9 lt-ie8 lt-ie7\" lang=\"tr\"> <![endif]-->\\n<!--[if IE 7]>         <html class=\"no-js lt-ie9 lt-ie8\" lang=\"tr\"> <![endif]-->\\n<!--[if IE 8]>         <html class=\"no-js lt-ie9\" lang=\"tr\"> <![endif]-->\\n<!--[if gt IE 8]>      <html class=\"no-js'"}
+[02/23/26 13:49:50] Error calling tool
+                    'jurix_download_pdf'
+                    ╭─ Traceback (most recent call last)─╮
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\tools.py:30 in                 │
+                    │ jurix_download_pdf                 │
+                    │                                    │
+                    │   27 │   │   output_root = self.ac │
+                    │   28 │   │   output_root.mkdir(par │
+                    │   29 │   │   try:                  │
+                    │ ❱ 30 │   │   │   result = self.jur │
+                    │      output_root)                  │
+                    │   31 │   │   except DownloadError  │
+                    │   32 │   │   │   # Some article pa │
+                    │      looks logged in.              │
+                    │   33 │   │   │   if "Unable to ext │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:322 in           │
+                    │ download_article_pdf               │
+                    │                                    │
+                    │   319 │                            │
+                    │   320 │   def download_article_pdf │
+                    │       output_root: Path) -> Downlo │
+                    │   321 │   │   started = time.perf_ │
+                    │ ❱ 322 │   │   details = self.get_a │
+                    │   323 │   │   safe_title = "".join │
+                    │       ", "-")).strip().replace(" " │
+                    │   324 │   │   safe_author = "".joi │
+                    │       (" ", "-")).strip().replace( │
+                    │   325 │   │   folder_name = f"{saf │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:294 in           │
+                    │ get_article_details                │
+                    │                                    │
+                    │   291 │   │   │   if img_match:    │
+                    │   292 │   │   │   │   slug = img_m │
+                    │   293 │   │   if slug is None:     │
+                    │ ❱ 294 │   │   │   raise DownloadEr │
+                    │   295 │   │                        │
+                    │   296 │   │   image_pages = self._ │
+                    │   297 │   │   if image_pages:      │
+                    ╰────────────────────────────────────╯
+                    DownloadError: Unable to extract image
+                    slug from article page
+
+                    During handling of the above
+                    exception, another exception occurred:
+
+                    ╭─ Traceback (most recent call last)─╮
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\server\serv │
+                    │ er.py:982 in call_tool             │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\tools\tool. │
+                    │ py:332 in _run                     │
+                    │                                    │
+                    │      ... 8 frames hidden ...       │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\tools.py:51 in                 │
+                    │ _force_relogin_session             │
+                    │                                    │
+                    │   48 │   def _force_relogin_sessio │
+                    │   49 │   │   session = self.jurix_ │
+                    │   50 │   │   csrf = self.jurix_cli │
+                    │ ❱ 51 │   │   csrf = self.jurix_cli │
+                    │      auth.account.password, csrf)  │
+                    │   52 │   │   self.repository.save_ │
+                    │   53 │   │   │   account_id=auth.a │
+                    │   54 │   │   │   csrf_token=csrf,  │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:152 in login     │
+                    │                                    │
+                    │   149 │   │   │   │   │   "detail" │
+                    │   150 │   │   │   │   },           │
+                    │   151 │   │   │   )                │
+                    │ ❱ 152 │   │   │   raise Authentica │
+                    │   153 │   │                        │
+                    │   154 │   │   return csrf          │
+                    │   155                              │
+                    ╰────────────────────────────────────╯
+                    AuthenticationError: Login failed due
+                    to invalid credentials
+INFO:     127.0.0.1:62063 - "POST /mcp HTTP/1.1" 200 OK
+[02/23/26 13:50:04] Error calling tool
+                    'jurix_download_pdf'
+                    ╭─ Traceback (most recent call last)─╮
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\server\serv │
+                    │ er.py:982 in call_tool             │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\tools\tool. │
+                    │ py:332 in _run                     │
+                    │                                    │
+                    │      ... 8 frames hidden ...       │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:334 in           │
+                    │ download_article_pdf               │
+                    │                                    │
+                    │   331 │   │   │   content = self._ │
+                    │       details["slug"])             │
+                    │   332 │   │   │   if content is No │
+                    │   333 │   │   │   │   continue     │
+                    │ ❱ 334 │   │   │   image = Image.op │
+                    │   335 │   │   │   path = article_d │
+                    │   336 │   │   │   image.save(path, │
+                    │   337 │   │   │   image_paths.appe │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\PIL\Image.py:3579   │
+                    │ in open                            │
+                    │                                    │
+                    │   3576 │   for message in warning_ │
+                    │   3577 │   │   warnings.warn(messa │
+                    │   3578 │   msg = "cannot identify  │
+                    │ ❱ 3579 │   raise UnidentifiedImage │
+                    │   3580                             │
+                    │   3581                             │
+                    │   3582 #                           │
+                    ╰────────────────────────────────────╯
+                    UnidentifiedImageError: cannot
+                    identify image file <_io.BytesIO
+                    object at 0x000002905253E200>
+INFO:     127.0.0.1:56873 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56874 - "POST /mcp HTTP/1.1" 200 OK
+Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Roaming\uv\python\cpython-3.11.11-windows-x86_64-none\Lib\asyncio\events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\Lenovo\AppData\Roaming\uv\python\cpython-3.11.11-windows-x86_64-none\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+ConnectionResetError: [WinError 10054] Varolan bir bağlantı uzaktaki bir ana bilgisayar tarafından zorla kapatıldı
+INFO:     127.0.0.1:56875 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56876 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56883 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56883 - "POST /mcp HTTP/1.1" 200 OK
+{"level": "ERROR", "name": "jurixmcp.jurix_http", "message": "Login rejected", "event": "login_rejected", "detail": "email=j88r9kmwr1@dollicons.com body='<!DOCTYPE html>\\n<!--[if lt IE 7]>      <html class=\"no-js lt-ie9 lt-ie8 lt-ie7\" lang=\"tr\"> <![endif]-->\\n<!--[if IE 7]>         <html class=\"no-js lt-ie9 lt-ie8\" lang=\"tr\"> <![endif]-->\\n<!--[if IE 8]>         <html class=\"no-js lt-ie9\" lang=\"tr\"> <![endif]-->\\n<!--[if gt IE 8]>      <html class=\"no-js'"}
+[02/23/26 13:50:56] Error calling tool
+                    'jurix_download_pdf'
+                    ╭─ Traceback (most recent call last)─╮
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\tools.py:30 in                 │
+                    │ jurix_download_pdf                 │
+                    │                                    │
+                    │   27 │   │   output_root = self.ac │
+                    │   28 │   │   output_root.mkdir(par │
+                    │   29 │   │   try:                  │
+                    │ ❱ 30 │   │   │   result = self.jur │
+                    │      output_root)                  │
+                    │   31 │   │   except DownloadError  │
+                    │   32 │   │   │   # Some article pa │
+                    │      looks logged in.              │
+                    │   33 │   │   │   if "Unable to ext │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:322 in           │
+                    │ download_article_pdf               │
+                    │                                    │
+                    │   319 │                            │
+                    │   320 │   def download_article_pdf │
+                    │       output_root: Path) -> Downlo │
+                    │   321 │   │   started = time.perf_ │
+                    │ ❱ 322 │   │   details = self.get_a │
+                    │   323 │   │   safe_title = "".join │
+                    │       ", "-")).strip().replace(" " │
+                    │   324 │   │   safe_author = "".joi │
+                    │       (" ", "-")).strip().replace( │
+                    │   325 │   │   folder_name = f"{saf │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:294 in           │
+                    │ get_article_details                │
+                    │                                    │
+                    │   291 │   │   │   if img_match:    │
+                    │   292 │   │   │   │   slug = img_m │
+                    │   293 │   │   if slug is None:     │
+                    │ ❱ 294 │   │   │   raise DownloadEr │
+                    │   295 │   │                        │
+                    │   296 │   │   image_pages = self._ │
+                    │   297 │   │   if image_pages:      │
+                    ╰────────────────────────────────────╯
+                    DownloadError: Unable to extract image
+                    slug from article page
+
+                    During handling of the above
+                    exception, another exception occurred:
+
+                    ╭─ Traceback (most recent call last)─╮
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\server\serv │
+                    │ er.py:982 in call_tool             │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\tools\tool. │
+                    │ py:332 in _run                     │
+                    │                                    │
+                    │      ... 8 frames hidden ...       │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\tools.py:51 in                 │
+                    │ _force_relogin_session             │
+                    │                                    │
+                    │   48 │   def _force_relogin_sessio │
+                    │   49 │   │   session = self.jurix_ │
+                    │   50 │   │   csrf = self.jurix_cli │
+                    │ ❱ 51 │   │   csrf = self.jurix_cli │
+                    │      auth.account.password, csrf)  │
+                    │   52 │   │   self.repository.save_ │
+                    │   53 │   │   │   account_id=auth.a │
+                    │   54 │   │   │   csrf_token=csrf,  │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:152 in login     │
+                    │                                    │
+                    │   149 │   │   │   │   │   "detail" │
+                    │   150 │   │   │   │   },           │
+                    │   151 │   │   │   )                │
+                    │ ❱ 152 │   │   │   raise Authentica │
+                    │   153 │   │                        │
+                    │   154 │   │   return csrf          │
+                    │   155                              │
+                    ╰────────────────────────────────────╯
+                    AuthenticationError: Login failed due
+                    to invalid credentials
+INFO:     127.0.0.1:56890 - "POST /mcp HTTP/1.1" 200 OK
+{"level": "ERROR", "name": "jurixmcp.jurix_http", "message": "Login rejected", "event": "login_rejected", "detail": "email=ryvc7zkdjr@dollicons.com body='<!DOCTYPE html>\\n<!--[if lt IE 7]>      <html class=\"no-js lt-ie9 lt-ie8 lt-ie7\" lang=\"tr\"> <![endif]-->\\n<!--[if IE 7]>         <html class=\"no-js lt-ie9 lt-ie8\" lang=\"tr\"> <![endif]-->\\n<!--[if IE 8]>         <html class=\"no-js lt-ie9\" lang=\"tr\"> <![endif]-->\\n<!--[if gt IE 8]>      <html class=\"no-js'"}
+[02/23/26 13:51:13] Error calling tool
+                    'jurix_download_pdf'
+                    ╭─ Traceback (most recent call last)─╮
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\tools.py:30 in                 │
+                    │ jurix_download_pdf                 │
+                    │                                    │
+                    │   27 │   │   output_root = self.ac │
+                    │   28 │   │   output_root.mkdir(par │
+                    │   29 │   │   try:                  │
+                    │ ❱ 30 │   │   │   result = self.jur │
+                    │      output_root)                  │
+                    │   31 │   │   except DownloadError  │
+                    │   32 │   │   │   # Some article pa │
+                    │      looks logged in.              │
+                    │   33 │   │   │   if "Unable to ext │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:322 in           │
+                    │ download_article_pdf               │
+                    │                                    │
+                    │   319 │                            │
+                    │   320 │   def download_article_pdf │
+                    │       output_root: Path) -> Downlo │
+                    │   321 │   │   started = time.perf_ │
+                    │ ❱ 322 │   │   details = self.get_a │
+                    │   323 │   │   safe_title = "".join │
+                    │       ", "-")).strip().replace(" " │
+                    │   324 │   │   safe_author = "".joi │
+                    │       (" ", "-")).strip().replace( │
+                    │   325 │   │   folder_name = f"{saf │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:294 in           │
+                    │ get_article_details                │
+                    │                                    │
+                    │   291 │   │   │   if img_match:    │
+                    │   292 │   │   │   │   slug = img_m │
+                    │   293 │   │   if slug is None:     │
+                    │ ❱ 294 │   │   │   raise DownloadEr │
+                    │   295 │   │                        │
+                    │   296 │   │   image_pages = self._ │
+                    │   297 │   │   if image_pages:      │
+                    ╰────────────────────────────────────╯
+                    DownloadError: Unable to extract image
+                    slug from article page
+
+                    During handling of the above
+                    exception, another exception occurred:
+
+                    ╭─ Traceback (most recent call last)─╮
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\server\serv │
+                    │ er.py:982 in call_tool             │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\tools\tool. │
+                    │ py:332 in _run                     │
+                    │                                    │
+                    │      ... 8 frames hidden ...       │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\tools.py:51 in                 │
+                    │ _force_relogin_session             │
+                    │                                    │
+                    │   48 │   def _force_relogin_sessio │
+                    │   49 │   │   session = self.jurix_ │
+                    │   50 │   │   csrf = self.jurix_cli │
+                    │ ❱ 51 │   │   csrf = self.jurix_cli │
+                    │      auth.account.password, csrf)  │
+                    │   52 │   │   self.repository.save_ │
+                    │   53 │   │   │   account_id=auth.a │
+                    │   54 │   │   │   csrf_token=csrf,  │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:152 in login     │
+                    │                                    │
+                    │   149 │   │   │   │   │   "detail" │
+                    │   150 │   │   │   │   },           │
+                    │   151 │   │   │   )                │
+                    │ ❱ 152 │   │   │   raise Authentica │
+                    │   153 │   │                        │
+                    │   154 │   │   return csrf          │
+                    │   155                              │
+                    ╰────────────────────────────────────╯
+                    AuthenticationError: Login failed due
+                    to invalid credentials
+INFO:     127.0.0.1:56894 - "POST /mcp HTTP/1.1" 200 OK
+[02/23/26 13:51:23] Error calling tool
+                    'jurix_download_pdf'
+                    ╭─ Traceback (most recent call last)─╮
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\server\serv │
+                    │ er.py:982 in call_tool             │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\fastmcp\tools\tool. │
+                    │ py:332 in _run                     │
+                    │                                    │
+                    │      ... 8 frames hidden ...       │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\src\jurix │
+                    │ mcp\jurix_http.py:334 in           │
+                    │ download_article_pdf               │
+                    │                                    │
+                    │   331 │   │   │   content = self._ │
+                    │       details["slug"])             │
+                    │   332 │   │   │   if content is No │
+                    │   333 │   │   │   │   continue     │
+                    │ ❱ 334 │   │   │   image = Image.op │
+                    │   335 │   │   │   path = article_d │
+                    │   336 │   │   │   image.save(path, │
+                    │   337 │   │   │   image_paths.appe │
+                    │                                    │
+                    │ C:\Users\Lenovo\jurixmcp\.venv\Lib │
+                    │ \site-packages\PIL\Image.py:3579   │
+                    │ in open                            │
+                    │                                    │
+                    │   3576 │   for message in warning_ │
+                    │   3577 │   │   warnings.warn(messa │
+                    │   3578 │   msg = "cannot identify  │
+                    │ ❱ 3579 │   raise UnidentifiedImage │
+                    │   3580                             │
+                    │   3581                             │
+                    │   3582 #                           │
+                    ╰────────────────────────────────────╯
+                    UnidentifiedImageError: cannot
+                    identify image file <_io.BytesIO
+                    object at 0x000002905266FB00>
+

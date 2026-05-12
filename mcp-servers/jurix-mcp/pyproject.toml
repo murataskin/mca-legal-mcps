@@ -1,0 +1,36 @@
+[project]
+name = "jurixmcp"
+version = "0.1.0"
+description = "Jurix MCP server with HTTP-based account/session management"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "beautifulsoup4>=4.12.3",
+    "fastmcp>=3.0.1",
+    "pillow>=11.1.0",
+    "requests>=2.32.3",
+]
+
+[project.scripts]
+jurix-mcp = "jurixmcp.app:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+markers = [
+    "live: network-dependent integration tests against live services",
+]

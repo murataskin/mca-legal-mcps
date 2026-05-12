@@ -1,0 +1,161 @@
+# -*- coding: utf-8 -*-
+"""
+DergiPark MCP Server
+
+MCP server for searching and analyzing Turkish academic journal articles
+using FastMCP v2.14.1+.
+
+Usage:
+    python mcp_server.py          # Direct run
+    fastmcp dev mcp_server.py     # Development mode
+    fastmcp run mcp_server.py     # Production mode
+"""
+
+from typing import Optional, Literal, Annotated
+from fastmcp import FastMCP, Context
+from pydantic import Field
+
+from core import (
+    search_articles_core,
+    pdf_to_html_core,
+    get_article_references_core,
+)
+
+
+# --- FastMCP Server Initialization ---
+mcp = FastMCP(
+    name="DergiPark MCP",
+    instructions="""
+    DergiPark Academic Article Search and Analysis MCP Server.
+
+    This server is used for searching Turkish academic journals, converting PDFs
+    to readable format, and extracting article metadata.
+
+    Features:
+    - Article search (with year, type, sorting filters)
+    - PDF to HTML conversion
+    - Article metadata and index information extraction
+
+    Note: Automatically handles CAPTCHA protection.
+    """,
+)
+
+
+# --- MCP Tools ---
+
+@mcp.tool
+async def search_articles(
+    query: Annotated[str, Field(description="Search query (e.g., 'artificial intelligence', 'sociology'). Leave empty to search all articles.")] = "",
+    page: Annotated[int, Field(ge=1, description="Page number (24 articles per page, default: 1)")] = 1,
+    sort: Annotated[Optional[Literal["newest", "oldest"]], Field(description="Sort order: 'newest' or 'oldest'")] = None,
+    article_type: Annotated[Optional[str], Field(description="Article type code. 54=Research Article, 55=Case Report, 56=Review, 58=Conference Paper, 65=Book Review, 10=Review Article")] = None,
+    year: Annotated[Optional[str], Field(description="Publication year filter (e.g., '2024', '2023')")] = None,
+    index_filter: Annotated[Optional[Literal["tr_dizin_icerenler", "bos_olmayanlar", "hepsi"]], Field(description="Index filter: 'tr_dizin_icerenler' (TR Index only), 'bos_olmayanlar' (has any index), 'hepsi' (all)")] = "hepsi",
+    ctx: Context = None,
+) -> dict:
+    """
+    Search Turkish academic journals on DergiPark.
+
+    Returns 24 articles per page with title, authors, abstract, keywords, DOI, indexes, and PDF link.
+
+    Examples:
+    - search_articles(query="machine learning")
+    - search_articles(query="education", page=2)
+    - search_articles(query="health", sort="newest")
+    """
+    if ctx:
+        await ctx.info(f"Searching DergiPark: '{query or '*'}' (page {page})")
+
+    try:
+        result = await search_articles_core(
+            q=query or None,
+            page=page,
+            sort_by=sort,
+            article_type=article_type,
+            publication_year=year,
+            index_filter=index_filter,
+        )
+
+        if ctx:
+            article_count = len(result.get("articles", []))
+            await ctx.info(f"Found: {article_count} articles")
+
+        return result
+
+    except Exception as e:
+        error_msg = f"Search error: {str(e)}"
+        if ctx:
+            await ctx.error(error_msg)
+        return {"error": error_msg, "pagination": None, "articles": []}
+
+
+@mcp.tool
+async def pdf_to_html(
+    pdf_id: Annotated[str, Field(description="DergiPark article file ID (e.g., '118146')")],
+    ctx: Context = None,
+) -> str:
+    """
+    Convert a DergiPark PDF to readable HTML format.
+
+    Only the numeric file ID is required (e.g., '118146').
+    URL is automatically constructed: dergipark.org.tr/tr/download/article-file/{id}
+    """
+    pdf_url = f"https://dergipark.org.tr/tr/download/article-file/{pdf_id}"
+
+    if ctx:
+        await ctx.info(f"Converting PDF: {pdf_id}")
+
+    try:
+        result = await pdf_to_html_core(pdf_url)
+
+        if ctx:
+            await ctx.info("PDF converted successfully")
+
+        return result
+
+    except Exception as e:
+        error_msg = f"PDF conversion error: {str(e)}"
+        if ctx:
+            await ctx.error(error_msg)
+        return f"<html><body><h1>Error</h1><p>{error_msg}</p></body></html>"
+
+
+@mcp.tool
+async def get_article_references(
+    article_url: Annotated[str, Field(description="DergiPark article URL (e.g., 'https://dergipark.org.tr/en/pub/eskiyeni/article/434507')")],
+    ctx: Context = None,
+) -> dict:
+    """
+    Get references list for a DergiPark article.
+
+    Returns the full list of references cited in the article.
+    Use this after search_articles to get detailed reference information.
+    """
+    if ctx:
+        await ctx.info(f"Fetching references: {article_url[:50]}...")
+
+    try:
+        result = await get_article_references_core(article_url)
+
+        if ctx:
+            count = result.get('reference_count', 0)
+            await ctx.info(f"Found {count} references")
+
+        return result
+
+    except Exception as e:
+        error_msg = f"References fetch error: {str(e)}"
+        if ctx:
+            await ctx.error(error_msg)
+        return {"error": error_msg, "references": []}
+
+
+# --- Entry Point ---
+
+def main():
+    """Entry point for the MCP server."""
+    mcp.run()
+
+
+if __name__ == "__main__":
+    main()

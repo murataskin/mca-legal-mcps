@@ -1,0 +1,26 @@
+[project]
+name = "literatur-mcp"
+version = "1.0.0"
+description = "DergiPark MCP Server - Search and analyze Turkish academic journal articles"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastmcp>=2.14.1",
+    "aiofiles>=23.0.0",
+    "beautifulsoup4>=4.11.0",
+    "cachetools>=5.0.0",
+    "fastapi>=0.100.0",
+    "html5lib>=1.1",
+    "httpx>=0.25.0",
+    "uvicorn[standard]>=0.23.0",
+    "pydantic>=2.11.2",
+    "pymupdf>=1.25.5",
+    "mistralai>=1.9.11",
+    "scrapling[fetchers]>=0.3.7",
+]
+
+[project.scripts]
+literatur-mcp = "mcp_server:main"
+
+[tool.setuptools]
+py-modules = ["mcp_server", "core"]
