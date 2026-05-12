@@ -1,0 +1,20 @@
+{
+  "name": "mca-legal-mcps",
+  "interface": {
+    "displayName": "MCA Legal MCPS"
+  },
+  "plugins": [
+    {
+      "name": "mca-legal-mcps",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
