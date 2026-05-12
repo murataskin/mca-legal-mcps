@@ -8,7 +8,7 @@
       "name": "mca-legal-mcps",
       "source": {
         "source": "local",
-        "path": "../.."
+        "path": "./"
       },
       "policy": {
         "installation": "AVAILABLE",
